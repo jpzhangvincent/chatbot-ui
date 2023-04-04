@@ -8,6 +8,7 @@ import {
   IconPlayerStop,
   IconRepeat,
   IconSend,
+  IconUpload
 } from '@tabler/icons-react';
 import { useTranslation } from 'next-i18next';
 import {
@@ -22,6 +23,7 @@ import {
 import { PluginSelect } from './PluginSelect';
 import { PromptList } from './PromptList';
 import { VariableModal } from './VariableModal';
+import { Tiptap } from './TiptapChatInput'
 
 interface Props {
   messageIsStreaming: boolean;
@@ -320,7 +322,7 @@ export const ChatInput: FC<Props> = ({
           />
 
           <button
-            className="absolute right-2 top-2 rounded-sm p-1 text-neutral-800 opacity-60 hover:bg-neutral-200 hover:text-neutral-900 dark:bg-opacity-50 dark:text-neutral-100 dark:hover:text-neutral-200"
+            className="absolute right-8 top-2 rounded-sm p-1 text-neutral-800 opacity-60 hover:bg-neutral-200 hover:text-neutral-900 dark:bg-opacity-50 dark:text-neutral-100 dark:hover:text-neutral-200"
             onClick={handleSend}
           >
             {messageIsStreaming ? (
@@ -329,6 +331,17 @@ export const ChatInput: FC<Props> = ({
               <IconSend size={18} />
             )}
           </button>
+          <button
+            className="absolute right-2 top-2 rounded-sm p-1 text-neutral-800 opacity-60 hover:bg-neutral-200 hover:text-neutral-900 dark:bg-opacity-50 dark:text-neutral-100 dark:hover:text-neutral-200"
+            onClick={handleSend}
+          >
+            {messageIsStreaming ? (
+              <div className="h-4 w-4 animate-spin rounded-full border-t-2 border-neutral-800 opacity-60 dark:border-neutral-100"></div>
+            ) : (
+              <IconUpload size={18} />
+            )}
+          </button>
+
 
           {showPromptList && filteredPrompts.length > 0 && (
             <div className="absolute bottom-12 w-full">

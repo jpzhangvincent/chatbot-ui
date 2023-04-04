@@ -30,7 +30,11 @@
     "remark-math": "^5.1.1",
     "uuid": "^9.0.0",
     "wagmi": "^0.12.8",
-    "@rainbow-me/rainbowkit": "^0.12.5"
+    "@rainbow-me/rainbowkit": "^0.12.5",
+    "@tiptap/react": "^2.0.2",
+    "@tiptap/pm": "^2.0.2",
+    "@tiptap/starter-kit": "^2.0.2",
+    "react-icons": "4.8.0"
   },
   "devDependencies": {
     "@mozilla/readability": "^0.4.4",
