@@ -37,6 +37,7 @@ import Head from 'next/head';
 import { useEffect, useRef, useState } from 'react';
 import toast from 'react-hot-toast';
 import { v4 as uuidv4 } from 'uuid';
+import { useAccount } from "wagmi";
 
 interface HomeProps {
   serverSideApiKeyIsSet: boolean;
@@ -58,6 +59,7 @@ const Home: React.FC<HomeProps> = ({
   const [loading, setLoading] = useState<boolean>(false);
   const [lightMode, setLightMode] = useState<'dark' | 'light'>('dark');
   const [messageIsStreaming, setMessageIsStreaming] = useState<boolean>(false);
+  const { address, isConnected } = useAccount();
 
   const [modelError, setModelError] = useState<ErrorMessage | null>(null);
 

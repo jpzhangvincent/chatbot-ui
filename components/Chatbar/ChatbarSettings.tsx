@@ -8,6 +8,7 @@ import { Key } from '../Settings/Key';
 import { SidebarButton } from '../Sidebar/SidebarButton';
 import { ClearConversations } from './ClearConversations';
 import { PluginKeys } from './PluginKeys';
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 interface Props {
   lightMode: 'light' | 'dark';
@@ -77,6 +78,8 @@ export const ChatbarSettings: FC<Props> = ({
           onClearPluginKey={onClearPluginKey}
         />
       ) : null}
+      
+      <ConnectButton label="Connect Web3 Wallet" showBalance={false} chainStatus="icon"/>
     </div>
   );
 };
