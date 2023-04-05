@@ -78,7 +78,7 @@ export const ChatbarSettings: FC<Props> = ({
           onClearPluginKey={onClearPluginKey}
         />
       ) : null}
-      
+
       <ConnectButton label="Connect Web3 Wallet" showBalance={false} chainStatus="icon"/>
     </div>
   );
