@@ -20,6 +20,7 @@ interface Props {
   onUpdateFolder: (folderId: string, name: string) => void;
   onCreatePrompt: () => void;
   onUpdatePrompt: (prompt: Prompt) => void;
+  onMintPrompt:  (prompt: Prompt) => void;
   onDeletePrompt: (prompt: Prompt) => void;
 }
 
@@ -31,6 +32,7 @@ export const Promptbar: FC<Props> = ({
   onUpdateFolder,
   onCreatePrompt,
   onUpdatePrompt,
+  onMintPrompt,
   onDeletePrompt,
 }) => {
   const { t } = useTranslation('promptbar');
@@ -39,6 +41,11 @@ export const Promptbar: FC<Props> = ({
 
   const handleUpdatePrompt = (prompt: Prompt) => {
     onUpdatePrompt(prompt);
+    setSearchTerm('');
+  };
+
+  const handleMintPrompt = (prompt: Prompt) => {
+    onMintPrompt(prompt);
     setSearchTerm('');
   };
 
@@ -151,6 +158,7 @@ export const Promptbar: FC<Props> = ({
             <Prompts
               prompts={filteredPrompts.filter((prompt) => !prompt.folderId)}
               onUpdatePrompt={handleUpdatePrompt}
+              onMintPrompt={handleMintPrompt}
               onDeletePrompt={handleDeletePrompt}
             />
           </div>

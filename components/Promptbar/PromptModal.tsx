@@ -6,9 +6,10 @@ interface Props {
   prompt: Prompt;
   onClose: () => void;
   onUpdatePrompt: (prompt: Prompt) => void;
+  onMintPrompt: (prompt: Prompt) => void;
 }
 
-export const PromptModal: FC<Props> = ({ prompt, onClose, onUpdatePrompt }) => {
+export const PromptModal: FC<Props> = ({ prompt, onClose, onUpdatePrompt, onMintPrompt }) => {
   const { t } = useTranslation('promptbar');
   const [name, setName] = useState(prompt.name);
   const [description, setDescription] = useState(prompt.description);
@@ -61,7 +62,7 @@ export const PromptModal: FC<Props> = ({ prompt, onClose, onUpdatePrompt }) => {
 
           <div
             ref={modalRef}
-            className="dark:border-netural-400 inline-block max-h-[400px] transform overflow-hidden rounded-lg border border-gray-300 bg-white px-4 pt-5 pb-4 text-left align-bottom shadow-xl transition-all dark:bg-[#202123] sm:my-8 sm:max-h-[600px] sm:w-full sm:max-w-lg sm:p-6 sm:align-middle"
+            className="dark:border-netural-400 inline-block max-h-[400px] transform overflow-hidden rounded-lg border border-gray-300 bg-white px-4 pt-5 pb-4 text-left align-bottom shadow-xl transition-all dark:bg-[#202123] sm:my-8 sm:max-h-[800px] sm:w-full sm:max-w-lg sm:p-6 sm:align-middle"
             role="dialog"
           >
             <div className="text-sm font-bold text-black dark:text-neutral-200">
@@ -119,6 +120,25 @@ export const PromptModal: FC<Props> = ({ prompt, onClose, onUpdatePrompt }) => {
               }}
             >
               {t('Save')}
+            </button>
+
+            <button
+              type="button"
+              className="w-full px-4 py-2 mt-6 border rounded-lg shadow border-neutral-500 text-neutral-900 hover:bg-neutral-100 focus:outline-none dark:border-neutral-800 dark:border-opacity-50 dark:bg-white dark:text-black dark:hover:bg-neutral-300"
+              onClick={() => {
+                const updatedPrompt = {
+                  ...prompt,
+                  name,
+                  description,
+                  content: content.trim(),
+                };
+                console.log(this.Props)
+                console.log("updatedPrompt:", updatedPrompt);
+                onMintPrompt(updatedPrompt);
+                onClose();
+              }}
+            >
+              {t('Mint Prompt NFT')}
             </button>
           </div>
         </div>

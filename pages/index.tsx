@@ -60,6 +60,8 @@ const Home: React.FC<HomeProps> = ({
   const [lightMode, setLightMode] = useState<'dark' | 'light'>('dark');
   const [messageIsStreaming, setMessageIsStreaming] = useState<boolean>(false);
   const { address, isConnected } = useAccount();
+  const [wallet, setWallet] = useState("");
+  const [status, setStatus] = useState("");
 
   const [modelError, setModelError] = useState<ErrorMessage | null>(null);
 
@@ -286,7 +288,7 @@ const Home: React.FC<HomeProps> = ({
         setMessageIsStreaming(false);
       }
     }
-  };
+  };  
 
   // FETCH MODELS ----------------------------------------------
 
@@ -627,6 +629,29 @@ const Home: React.FC<HomeProps> = ({
     savePrompts(updatedPrompts);
   };
 
+  const handleMintPrompt = async (prompt: Prompt) => {
+    console.log(prompt)
+    const response  = await fetch('/api/mintNFT', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: prompt.name, 
+        description: prompt.description, 
+        prompt: prompt.content, 
+        contractAddress: address
+      }),
+    }).then((res) => res.json());
+    console.log(response);
+
+    if (response != 'Error'){
+      setStatus('success')
+    } else {
+      setStatus('')
+    }
+  }
+
   const handleDeletePrompt = (prompt: Prompt) => {
     const updatedPrompts = prompts.filter((p) => p.id !== prompt.id);
     setPrompts(updatedPrompts);
@@ -830,6 +855,7 @@ const Home: React.FC<HomeProps> = ({
                   folders={folders.filter((folder) => folder.type === 'prompt')}
                   onCreatePrompt={handleCreatePrompt}
                   onUpdatePrompt={handleUpdatePrompt}
+                  onMintPrompt={handleMintPrompt}
                   onDeletePrompt={handleDeletePrompt}
                   onCreateFolder={(name) => handleCreateFolder(name, 'prompt')}
                   onDeleteFolder={handleDeleteFolder}

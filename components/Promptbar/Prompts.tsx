@@ -5,12 +5,14 @@ import { PromptComponent } from './Prompt';
 interface Props {
   prompts: Prompt[];
   onUpdatePrompt: (prompt: Prompt) => void;
+  onMintPrompt: (prompt: Prompt) => void;
   onDeletePrompt: (prompt: Prompt) => void;
 }
 
 export const Prompts: FC<Props> = ({
   prompts,
   onUpdatePrompt,
+  onMintPrompt,
   onDeletePrompt,
 }) => {
   return (
@@ -23,6 +25,7 @@ export const Prompts: FC<Props> = ({
             key={index}
             prompt={prompt}
             onUpdatePrompt={onUpdatePrompt}
+            onMintPrompt={onMintPrompt}
             onDeletePrompt={onDeletePrompt}
           />
         ))}

@@ -11,12 +11,14 @@ import { PromptModal } from './PromptModal';
 interface Props {
   prompt: Prompt;
   onUpdatePrompt: (prompt: Prompt) => void;
+  onMintPrompt: (prompt: Prompt) => void;
   onDeletePrompt: (prompt: Prompt) => void;
 }
 
 export const PromptComponent: FC<Props> = ({
   prompt,
   onUpdatePrompt,
+  onMintPrompt,
   onDeletePrompt,
 }) => {
   const [showModal, setShowModal] = useState<boolean>(false);
@@ -109,6 +111,7 @@ export const PromptComponent: FC<Props> = ({
           prompt={prompt}
           onClose={() => setShowModal(false)}
           onUpdatePrompt={onUpdatePrompt}
+          onMintPrompt={onMintPrompt}
         />
       )}
     </div>
