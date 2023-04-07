@@ -6,4 +6,4 @@ services:
     ports:
       - 3000:3000
     environment:
-      - 'OPENAI_API_KEY=sk-ECIO8F3euCnGM60qvVN2T3BlbkFJjKRCCxLvzxtmeBcuDnikH'
+      - 'OPENAI_API_KEY='
